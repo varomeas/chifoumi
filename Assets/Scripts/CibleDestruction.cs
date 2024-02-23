@@ -5,14 +5,12 @@ using System;
 
 public class CibleDestruction : MonoBehaviour
 {
-    public KeyCode toucheDestruction = KeyCode.Space; // La touche à presser pour détruire la cible
-
-    void Update()
+    // This method will be called when the "Destroy" message is sent to this object
+    public void Destroy()
     {
-        // Détruire la cible si la touche est pressée
-        if (Input.GetKeyDown(toucheDestruction))
-        {
-            Destroy(gameObject);
-        }
+        // Perform any actions you want when the "Destroy" message is received
+        Debug.Log("Cible détruite");
+        // For example, you can destroy the target object itself
+        Destroy(gameObject);
     }
 }
