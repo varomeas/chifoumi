@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class CibleDestruction : MonoBehaviour
+public class CibleDestructionOld : MonoBehaviour
 {
     // This method will be called when the "Destroy" message is sent to this object
     public void Destroy()

@@ -6,9 +6,27 @@
             "id": "f6e3b7b7-054c-4634-9919-ed7b2711befd",
             "actions": [
                 {
-                    "name": "Destroy",
+                    "name": "DestroyPierre",
                     "type": "Button",
                     "id": "68beac38-afff-4688-9663-521e37207f0f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DestroyFeuille",
+                    "type": "Button",
+                    "id": "3e040284-8990-414d-9c61-3ec1894e48af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DestroyCiseau",
+                    "type": "Button",
+                    "id": "b3578d73-2659-425c-923c-6460eb91ad91",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -19,11 +37,33 @@
                 {
                     "name": "",
                     "id": "0029a6e6-2f9a-4d54-99e0-98cfc24bc361",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Destroy",
+                    "action": "DestroyPierre",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "010149a7-3152-48ae-bc35-03dc60e8a342",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DestroyFeuille",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e12149d-2f07-407d-b903-4568596c5a57",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DestroyCiseau",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

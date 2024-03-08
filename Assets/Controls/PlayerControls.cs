@@ -28,9 +28,27 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""f6e3b7b7-054c-4634-9919-ed7b2711befd"",
             ""actions"": [
                 {
-                    ""name"": ""Destroy"",
+                    ""name"": ""DestroyPierre"",
                     ""type"": ""Button"",
                     ""id"": ""68beac38-afff-4688-9663-521e37207f0f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DestroyFeuille"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e040284-8990-414d-9c61-3ec1894e48af"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DestroyCiseau"",
+                    ""type"": ""Button"",
+                    ""id"": ""b3578d73-2659-425c-923c-6460eb91ad91"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -41,11 +59,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0029a6e6-2f9a-4d54-99e0-98cfc24bc361"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Destroy"",
+                    ""action"": ""DestroyPierre"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""010149a7-3152-48ae-bc35-03dc60e8a342"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DestroyFeuille"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e12149d-2f07-407d-b903-4568596c5a57"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DestroyCiseau"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -56,7 +96,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 }");
         // PlayerInput
         m_PlayerInput = asset.FindActionMap("PlayerInput", throwIfNotFound: true);
-        m_PlayerInput_Destroy = m_PlayerInput.FindAction("Destroy", throwIfNotFound: true);
+        m_PlayerInput_DestroyPierre = m_PlayerInput.FindAction("DestroyPierre", throwIfNotFound: true);
+        m_PlayerInput_DestroyFeuille = m_PlayerInput.FindAction("DestroyFeuille", throwIfNotFound: true);
+        m_PlayerInput_DestroyCiseau = m_PlayerInput.FindAction("DestroyCiseau", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -118,12 +160,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // PlayerInput
     private readonly InputActionMap m_PlayerInput;
     private List<IPlayerInputActions> m_PlayerInputActionsCallbackInterfaces = new List<IPlayerInputActions>();
-    private readonly InputAction m_PlayerInput_Destroy;
+    private readonly InputAction m_PlayerInput_DestroyPierre;
+    private readonly InputAction m_PlayerInput_DestroyFeuille;
+    private readonly InputAction m_PlayerInput_DestroyCiseau;
     public struct PlayerInputActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerInputActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Destroy => m_Wrapper.m_PlayerInput_Destroy;
+        public InputAction @DestroyPierre => m_Wrapper.m_PlayerInput_DestroyPierre;
+        public InputAction @DestroyFeuille => m_Wrapper.m_PlayerInput_DestroyFeuille;
+        public InputAction @DestroyCiseau => m_Wrapper.m_PlayerInput_DestroyCiseau;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -133,16 +179,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerInputActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerInputActionsCallbackInterfaces.Add(instance);
-            @Destroy.started += instance.OnDestroy;
-            @Destroy.performed += instance.OnDestroy;
-            @Destroy.canceled += instance.OnDestroy;
+            @DestroyPierre.started += instance.OnDestroyPierre;
+            @DestroyPierre.performed += instance.OnDestroyPierre;
+            @DestroyPierre.canceled += instance.OnDestroyPierre;
+            @DestroyFeuille.started += instance.OnDestroyFeuille;
+            @DestroyFeuille.performed += instance.OnDestroyFeuille;
+            @DestroyFeuille.canceled += instance.OnDestroyFeuille;
+            @DestroyCiseau.started += instance.OnDestroyCiseau;
+            @DestroyCiseau.performed += instance.OnDestroyCiseau;
+            @DestroyCiseau.canceled += instance.OnDestroyCiseau;
         }
 
         private void UnregisterCallbacks(IPlayerInputActions instance)
         {
-            @Destroy.started -= instance.OnDestroy;
-            @Destroy.performed -= instance.OnDestroy;
-            @Destroy.canceled -= instance.OnDestroy;
+            @DestroyPierre.started -= instance.OnDestroyPierre;
+            @DestroyPierre.performed -= instance.OnDestroyPierre;
+            @DestroyPierre.canceled -= instance.OnDestroyPierre;
+            @DestroyFeuille.started -= instance.OnDestroyFeuille;
+            @DestroyFeuille.performed -= instance.OnDestroyFeuille;
+            @DestroyFeuille.canceled -= instance.OnDestroyFeuille;
+            @DestroyCiseau.started -= instance.OnDestroyCiseau;
+            @DestroyCiseau.performed -= instance.OnDestroyCiseau;
+            @DestroyCiseau.canceled -= instance.OnDestroyCiseau;
         }
 
         public void RemoveCallbacks(IPlayerInputActions instance)
@@ -162,6 +220,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public PlayerInputActions @PlayerInput => new PlayerInputActions(this);
     public interface IPlayerInputActions
     {
-        void OnDestroy(InputAction.CallbackContext context);
+        void OnDestroyPierre(InputAction.CallbackContext context);
+        void OnDestroyFeuille(InputAction.CallbackContext context);
+        void OnDestroyCiseau(InputAction.CallbackContext context);
     }
 }
