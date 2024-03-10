@@ -5,48 +5,34 @@ using UnityEngine.InputSystem;
 
 public class Joueur : MonoBehaviour
 {
-    private List<GameObject> targets = new List<GameObject>();
-
-        // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        // Find all targets and add them to the list
-        GameObject[] targetObjects = GameObject.FindGameObjectsWithTag("Target");
-        foreach(GameObject target in targetObjects)
+        // Utilisez le système d'entrée Unity pour détecter les touches F, G et H
+        if (Keyboard.current.fKey.wasPressedThisFrame)
         {
-            targets.Add(target);
+            DestroyTarget("Pierre");
+        }
+        else if (Keyboard.current.gKey.wasPressedThisFrame)
+        {
+            DestroyTarget("Feuille");
+        }
+        else if (Keyboard.current.hKey.wasPressedThisFrame)
+        {
+            DestroyTarget("Ciseau");
         }
     }
-
-
-
-    private void OnDestroyPierre(){
-        //envoit le message "Destroy" à l'objet "Cible"
-        DestroyTarget("Pierre");
-    }
-
-    private void OnDestroyFeuille(){
-        //envoit le message "Destroy" à l'objet "Cible"
-        DestroyTarget("Feuille");
-    }
-
-    private void OnDestroyCiseau(){
-        //envoit le message "Destroy" à l'objet "Cible"
-        DestroyTarget("Ciseau");
-    }
-
-
 
     private void DestroyTarget(string targetName)
     {
-        // Find the first target with the given name and destroy it
-        GameObject target = targets.Find(t => t.name.StartsWith(targetName));
-        if (target != null)
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Projectile");
+
+        foreach (GameObject target in targets)
         {
-            Destroy(target);
-            targets.Remove(target);
+            if (target.name.StartsWith(targetName) && target.name.EndsWith("(Clone)"))
+            {
+                Destroy(target);
+                break;
+            }
         }
     }
-
-
 }
