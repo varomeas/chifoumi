@@ -22,7 +22,7 @@ public class Joueur : MonoBehaviour
         }
     }
 
-    private void DestroyTarget(string targetName)
+    public void DestroyTarget(string targetName)
     {
         GameObject[] targets = GameObject.FindGameObjectsWithTag("Projectile");
 
