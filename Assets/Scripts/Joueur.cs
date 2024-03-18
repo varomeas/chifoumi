@@ -35,4 +35,17 @@ public class Joueur : MonoBehaviour
             }
         }
     }
+
+    public void DestroyAll()
+    {
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Projectile");
+
+        foreach (GameObject target in targets)
+        {
+            if (target.name.EndsWith("(Clone)"))
+            {
+                Destroy(target);
+            }
+        }
+    }
 }

@@ -11,7 +11,7 @@ public class ProjectileManager : MonoBehaviour
 
     private int projectileLayer;
 
-    private void Start()
+    public void Commencer()
     {
         projectileLayer = LayerMask.NameToLayer("ProjectileLayer");
 
