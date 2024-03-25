@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12729266, g: 0.13414232, b: 0.12114291, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -704,6 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1acbaa6fb8a591a46a25f644dede4d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!4 &1067106429
 Transform:
   m_ObjectHideFlags: 0
@@ -857,8 +858,8 @@ MonoBehaviour:
   - {fileID: 1401074624}
   - {fileID: 1055935477}
   - {fileID: 683837586}
-  spawnInterval: 2
-  projectileSpeed: 5
+  spawnInterval: 5
+  projectileSpeed: 2
   playerTransform: {fileID: 1167468530}
   generatedProjectileTag: GeneratedProjectile
 --- !u!4 &2041056503
@@ -1104,7 +1105,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &2133446146
 MeshCollider:
@@ -1266,6 +1267,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7832661893927074384, guid: be6a0fd8daa0677408fcb07c497ef4ca, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832661893927074384, guid: be6a0fd8daa0677408fcb07c497ef4ca, type: 3}
+      propertyPath: projectileManager
+      value: 
+      objectReference: {fileID: 2041056502}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

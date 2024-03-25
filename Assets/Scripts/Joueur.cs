@@ -48,4 +48,42 @@ public class Joueur : MonoBehaviour
             }
         }
     }
+
+
+    //health system
+    public int maxHealth;
+    private int currentHealth;
+
+    void Start()
+    {
+        currentHealth = maxHealth;
+        Debug.Log("currentHealth"+currentHealth);
+        Debug.Log("maxHealth"+maxHealth);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth = currentHealth-damage;
+        Debug.Log("Player hit"+currentHealth);
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        // Actions à effectuer lorsque le joueur meurt
+        Debug.Log("Player has died");
+        // Vous pouvez ajouter d'autres actions ici, comme la réinitialisation du niveau, l'affichage d'un message de défaite, etc.
+    }
+
+    //when the player collides with an object
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Projectile")
+        {
+            TakeDamage(20);
+        }
+    }
 }
