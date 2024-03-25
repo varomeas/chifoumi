@@ -5,6 +5,13 @@ using UnityEngine.InputSystem;
 
 public class Joueur : MonoBehaviour
 {
+    public GameObject GameOverScreen; // Reference to the XR UI GameObject
+    public GameObject RestartButton; // Reference to the restart button GameObject
+
+       //health system
+    public int maxHealth;
+    public int currentHealth;
+
     private void Update()
     {
         // Utilisez le système d'entrée Unity pour détecter les touches F, G et H
@@ -50,9 +57,7 @@ public class Joueur : MonoBehaviour
     }
 
 
-    //health system
-    public int maxHealth;
-    private int currentHealth;
+ 
 
     void Start()
     {
@@ -75,6 +80,11 @@ public class Joueur : MonoBehaviour
     {
         // Actions à effectuer lorsque le joueur meurt
         Debug.Log("Player has died");
+
+        //destruction des projectiles
+        DestroyAll();
+        GameOverScreen.SetActive(true);
+        RestartButton.SetActive(true);
         // Vous pouvez ajouter d'autres actions ici, comme la réinitialisation du niveau, l'affichage d'un message de défaite, etc.
     }
 
@@ -83,7 +93,9 @@ public class Joueur : MonoBehaviour
     {
         if (collision.gameObject.tag == "Projectile")
         {
-            TakeDamage(20);
+            TakeDamage(100);
         }
     }
+
+
 }
