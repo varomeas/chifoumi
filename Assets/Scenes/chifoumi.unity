@@ -1009,7 +1009,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529653379}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: 0, w: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: -0, w: 0}
   m_LocalPosition: {x: -0.47, y: 1.4389081, z: 6.31}
   m_LocalScale: {x: 1, y: 1, z: -5.5779}
   m_ConstrainProportionsScale: 0
@@ -1205,27 +1205,6 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   generatedProjectileTag: GeneratedProjectile
   player: {fileID: 0}
---- !u!95 &683837600
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 683837586}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2129420b820c4402292665215635f6b2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &701525130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,15 +1323,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2419458766503726380, guid: 0d5cf9a268eb0da42b33820a3984d56e, type: 3}
+    - {fileID: 2850131567975670513, guid: 0d5cf9a268eb0da42b33820a3984d56e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3317129006640688457, guid: 0d5cf9a268eb0da42b33820a3984d56e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 683837593}
-    - targetCorrespondingSourceObject: {fileID: 3317129006640688457, guid: 0d5cf9a268eb0da42b33820a3984d56e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 683837600}
   m_SourcePrefab: {fileID: 100100000, guid: 0d5cf9a268eb0da42b33820a3984d56e, type: 3}
 --- !u!1 &1019712540
 GameObject:
@@ -2128,13 +2105,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041056501}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.692129, z: -0, w: 0.72177386}
+  m_LocalRotation: {x: -0, y: 0.9999999, z: -0, w: -0.00051132956}
   m_LocalPosition: {x: 3.5, y: 3.24, z: -5.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 87.598, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180.059, z: 0}
 --- !u!1001 &2050571046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2528,7 +2505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7832661893927074384, guid: be6a0fd8daa0677408fcb07c497ef4ca, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7832661893927074384, guid: be6a0fd8daa0677408fcb07c497ef4ca, type: 3}
       propertyPath: RestartButton
