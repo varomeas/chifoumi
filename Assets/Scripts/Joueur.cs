@@ -23,6 +23,7 @@ public class Joueur : MonoBehaviour
     public AudioSource audioSource; // Reference to the AudioSource component
 
     public AudioClip hitSound; // Array to hold your sound effects
+    public AudioClip deathSound;
 
     private void Update()
     {
@@ -126,6 +127,14 @@ public class Joueur : MonoBehaviour
 
         //destruction des projectiles
         DestroyAll();
+
+        //stop music
+        audioSource.Stop();
+        //play death sound effect
+        if (audioSource && hitSound)
+        {
+            audioSource.PlayOneShot(deathSound);
+        }
         GameOverScreen.SetActive(true);
         //set the gameoverTextScore to the score
         TextMeshProUGUI gameOverScoreText = GameObject.Find("gameoverTextScore").GetComponent<TextMeshProUGUI>();
@@ -134,8 +143,7 @@ public class Joueur : MonoBehaviour
         RestartButton.SetActive(true);
         // Vous pouvez ajouter d'autres actions ici, comme la réinitialisation du niveau, l'affichage d'un message de défaite, etc.
 
-        //stop audioclip music
-        audioSource.Stop();
+
     }
 
     //when the player collides with an object
