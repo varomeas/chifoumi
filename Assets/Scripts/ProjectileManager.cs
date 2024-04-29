@@ -1,42 +1,89 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro; // Include the namespace for TextMeshPro
 
-public class ScoreManager : MonoBehaviour
+public class ProjectileManager : MonoBehaviour
 {
-    private TextMeshProUGUI scoreText; // TextMeshProUGUI component reference
-    public Joueur joueur; // Reference to the Joueur script
+    public GameObject[] projectilePrefabs;
+    public float spawnInterval = 1f;
+    public float projectileSpeed = 5f;
+    public Transform playerTransform;
+    public string generatedProjectileTag = "GeneratedProjectile"; // Ajoutez cette variable pour le tag
+    public Joueur player; // Référence au joueur pour savoir s'il est en vie.
 
-    void Start()
+    private int projectileLayer;
+    private Coroutine spawnCoroutine; // Référence à la coroutine
+
+    // Démarrer la coroutine lorsque le jeu commence
+    public void Start()
     {
-        // Find the TextMeshProUGUI component in children
-        scoreText = GetComponentInChildren<TextMeshProUGUI>();
+        projectileLayer = LayerMask.NameToLayer("ProjectileLayer");
+        StartSpawnProjectiles(); // Commencer à faire apparaître des projectiles
+    }
 
-        // Check if scoreText is found
-        if (scoreText == null)
+    // Méthode pour commencer à faire apparaître des projectiles
+    public void StartSpawnProjectiles()
+    {
+        spawnCoroutine = StartCoroutine(SpawnProjectiles());
+    }
+
+    // Méthode pour arrêter de faire apparaître des projectiles
+    public void StopSpawnProjectiles()
+    {
+        if (spawnCoroutine != null)
         {
-            Debug.LogError("TextMeshProUGUI component not found in children!");
-        }
-        else
-        {
-            // Update the initial score text
-            UpdateScoreText(joueur.score,joueur.scoremultiplier);
+            StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null;
         }
     }
 
-    void Update()
-    {
-        // Access the score variable from the Joueur script
-        int score = joueur.score;
-        int scoremultiplier = joueur.scoremultiplier;
+    IEnumerator SpawnProjectiles()
+{
+    float elapsedTime = 0f;
+    int spawnedProjectiles = 0;
 
-        // Update the score text
-        UpdateScoreText(score, scoremultiplier);
+    while (true)
+    {
+        // Calculate adjusted spawn interval and projectile speed based on elapsed time or spawned projectiles
+        float adjustedProjectileSpeed = projectileSpeed + (spawnedProjectiles * 2f);
+        float adjustedSpawnInterval = spawnInterval - (elapsedTime * 0.1f);
+
+        yield return new WaitForSeconds(adjustedSpawnInterval);
+
+        // Update elapsed time and spawned projectiles count
+        elapsedTime += adjustedSpawnInterval;
+        spawnedProjectiles++;
+
+        // Vérifier si le joueur est toujours en vie avant de faire apparaître des projectiles
+        if (!PlayerIsAlive())
+        {
+            // Si le joueur est mort, arrêter de faire apparaître des projectiles
+            StopSpawnProjectiles();
+            yield break; // Sortir de la coroutine
+        }
+
+        // Déboguer la longueur de projectilePrefabs
+        Debug.Log("Nombre de préfabriqués : " + projectilePrefabs.Length);
+
+        int randomIndex = Random.Range(0, projectilePrefabs.Length);
+
+        // Déboguer l'index aléatoire
+        Debug.Log("Index aléatoire : " + randomIndex);
+
+        GameObject newProjectile = Instantiate(projectilePrefabs[randomIndex], transform.position, Quaternion.identity);
+
+        Vector3 directionToPlayer = (playerTransform.position - newProjectile.transform.position).normalized;
+        newProjectile.GetComponent<Rigidbody>().velocity = directionToPlayer * adjustedProjectileSpeed;
+        newProjectile.tag = generatedProjectileTag;
+
+        // Définir la couche du projectile généré par le ProjectileManager
+        newProjectile.layer = projectileLayer;
     }
+}
 
-    void UpdateScoreText(int score, int scoremultiplier)
+
+    // Vérifier si le joueur est en vie
+    private bool PlayerIsAlive()
     {
-        // Update the text component with the new score value
-        scoreText.text = "Score: " + score.ToString() + " Multiplier: " + scoremultiplier.ToString();
+        return player.currentHealth > 0;
     }
 }
